@@ -1,0 +1,36 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/saia-core",
+    "crates/saia-verify",
+    "crates/saia-orchestrator",
+    "crates/saia-cli",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["MAPai & SAiA Protocol Contributors"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/saia-protocol/mapai-saia"
+description = "MAPai: A Reference Implementation of the Symbiotic Adaptive Intelligent Architecture (SAiA) Protocol"
+
+[workspace.dependencies]
+# CLI & Terminal Interface
+clap = { version = "4.5", features = ["derive", "cargo"] }
+colored = "2.1"
+indicatif = "0.17"
+
+# Serialization & Deserialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+toml = "0.8"
+
+# System, Hashing & Cryptography
+sha2 = "0.10"
+walkdir = "2.5"
+regex = "1.10"
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "1.0"
+anyhow = "1.0"
