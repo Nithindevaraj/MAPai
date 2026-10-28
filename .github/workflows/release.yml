@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    name: Build Release Asset (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            binary: mapai
+            asset_name: mapai-x86_64-unknown-linux-gnu.tar.gz
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            binary: mapai.exe
+            asset_name: mapai-x86_64-pc-windows-msvc.zip
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Build Binary
+        run: cargo build --release --target ${{ matrix.target }} -p saia-cli
+
+      - name: Package Linux Asset
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          cd target/${{ matrix.target }}/release
+          tar -czf ../../../${{ matrix.asset_name }} ${{ matrix.binary }}
+          cd ../../..
+
+      - name: Package Windows Asset
+        if: matrix.os == 'windows-latest'
+        shell: powershell
+        run: |
+          Compress-Archive -Path target/${{ matrix.target }}/release/${{ matrix.binary }} -DestinationPath ${{ matrix.asset_name }}
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.asset_name }}
+          generate_release_notes: true
