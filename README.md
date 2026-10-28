@@ -1,7 +1,8 @@
 # MAPai (SAiA) ⚡
 
-> **Symbiotic Adaptive Intelligent Architecture (SAiA)**  
-> *A Sovereign, Model-Agnostic Governance, Product Management & Deterministic Verification Engine for Human-AI Co-Creation.*
+> **The Sovereign Harness for Autonomous AI Agents**  
+> *"Models generate code. MAPai harnesses the swarm."*  
+> A Native Systems Rust Governance Engine, Swarm Containment Perimeter & Deterministic Verification Authority for Agentic Coding.
 
 [![Rust](https://img.shields.io/badge/Language-Rust-orange.svg)](https://www.rust-lang.org/)
 [![License](https://img.shields.io/badge/License-MIT%20OR%20Apache--2.0-blue.svg)](LICENSE)
@@ -15,22 +16,20 @@
 
 ## ⚡ What is MAPai?
 
-Most AI coding assistants and agent frameworks suffer from systemic operational flaws:
-1. **They write fake code:** They generate syntactically plausible code filled with `// TODO: implement later` stubs, mock data, and unhandled unwraps.
-2. **They forget your rules & clobber files:** Concurrently running subagents mutate the same files without synchronization, leading to "code shifting under their feet" collisions.
-3. **They grade their own homework:** The same stochastic model that generated the code tells you "everything works" without independent, deterministic verification.
-4. **They bloat resource overhead:** Heavy Python/Node.js agent runtimes consume 50MB–120MB+ of RAM per agent and inflate token costs by resending full conversation histories.
+> **"Models generate code. MAPai harnesses the swarm."**
 
-**MAPai solves this.** Written in native, memory-safe systems **Rust**, MAPai acts as an independent **governance engine, autonomous technical product manager, and deterministic verification authority** that sits between you and AI models:
+Modern coding agents (Claude Code, DeepSeek Harness, JCODE, Hermes) are powerful but unconstrained: they clobber files concurrently, leave hollow `// TODO` stubs, execute destructive shell commands, and grade their own work.
 
-* 🛡️ **Zero Hollow Stubs (`TruthScanner`):** Audits codebases in $< 10\text{ms}$ across 50,000 LOC, eliminating fake mocks and unhandled stubs.
-* 📋 **Autonomous AI Product Manager (AI-PM):** Formulates clear Problem Statements and Acceptance Criteria (`job_1_intent`) before code generation begins, applying PMI/PMP systems engineering disciplines.
-* 🔒 **Swarm Safety & Two-Phase Commit (2PC):** Multi-agent in-memory staging overlays prevent peer clobbering; disk writes occur only after verification passes.
-* 🌿 **Zero-Copy Context Forking:** Subagents branch via shared memory slices (`Arc<Vec<Turn>>`), saving 60–80% of prompt tokens.
-* 🧠 **0.01ms SQLite FTS5 Cognitive Memory:** Sub-millisecond cross-session memory recall powered by embedded SQLite full-text search.
-* 🛡️ **Blast-Radius Command Security:** Four-tier risk classification with an un-bypassable `Catastrophic` deny protecting `~`, system roots, SSH keys, and cloud credentials.
-* 🎛️ **Dedicated Native Web Cockpit (`mapai ui`):** An embedded browser studio serving live 2PC diff inspections, subagent trees, and reality monitors directly from a single compiled binary (no Node.js/npm runtime required).
-* 🔌 **Universal ACP & MCP Protocols:** Native support for both **Agent Communication Protocol (ACP)** and **Model Context Protocol (MCP)** for Cursor, Zed, Antigravity, and Claude Desktop.
+**MAPai is a native Rust governance harness that sits between autonomous agents and your machine:**
+
+1. 🔒 **Transactional Agent Containment (Two-Phase Commit)**: Agents operate in isolated virtual overlays. Mutations are held in-memory and only flushed to disk if all acceptance tests and linters pass atomically.
+2. 🛡️ **Blast-Radius & Secret Shield**: Strict 4-tier risk classification blocks catastrophic filesystem operations (`~`, `/`, `.ssh`, `.env`) and automatically scrubs credentials before execution.
+3. 📐 **AI Product Manager Constraint Gates**: Enforces PMI/PMP systems engineering disciplines, binding agents to formal Work Breakdown Structures (WBS) and Acceptance Criteria before generation begins.
+4. 🌿 **Zero-Copy Swarm Orchestration**: Spawns concurrent subagents across shared memory slices (`Arc<Vec<Turn>>`), eliminating cross-agent file collisions and slashing token consumption by 60–80%.
+5. 🔍 **Deterministic IV&V Authority (`TruthScanner`)**: Audits deliverables in $< 10\text{ms}$ with zero-tolerance for mock stubs, hallucinated crates, or unhandled failures.
+6. 🧠 **0.01ms SQLite FTS5 Cognitive Memory**: Sub-millisecond cross-session memory recall powered by embedded SQLite full-text search.
+7. 🎛️ **Dedicated Native Web Cockpit (`mapai ui`)**: An embedded browser studio serving live 2PC diff inspections, subagent trees, and reality monitors directly from a single compiled binary (no Node.js/npm runtime required).
+8. 🔌 **Universal ACP & MCP Protocols**: Native support for both **Agent Communication Protocol (ACP)** and **Model Context Protocol (MCP)** for Cursor, Zed, Antigravity, and Claude Desktop.
 
 ---
 
