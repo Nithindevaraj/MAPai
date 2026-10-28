@@ -1,5 +1,5 @@
 use saia_core::capsule::{PipelineStage, ProjectCapsule};
-use saia_verify::TruthScanner;
+use saia_verify::{TruthScanner, OnlineScoutVerifier};
 use std::path::Path;
 use thiserror::Error;
 
@@ -9,6 +9,8 @@ pub enum StageTransitionError {
     HollowStubsDetected(PipelineStage),
     #[error("Cannot advance: Missing Job 1 Problem Intent")]
     MissingIntent,
+    #[error("Cannot advance: Online scouting detected hallucinated/invalid dependencies: {0:?}")]
+    HallucinatedDependencies(Vec<String>),
     #[error("Cannot advance: Unverified physical compilation or test failure")]
     PhysicalRealityFailure,
 }
@@ -29,6 +31,12 @@ impl StageRunner {
                 Ok(PipelineStage::Stage3MaterialSelection)
             }
             PipelineStage::Stage3MaterialSelection => {
+                // Online internet scouting: verify all declared dependencies on public registries
+                if let Ok(report) = OnlineScoutVerifier::scout_and_verify_workspace(&workspace_root) {
+                    if !report.is_clean {
+                        return Err(StageTransitionError::HallucinatedDependencies(report.hallucinated_dependencies));
+                    }
+                }
                 Ok(PipelineStage::Stage4Implementation)
             }
             PipelineStage::Stage4Implementation => {
@@ -51,5 +59,35 @@ impl StageRunner {
                 Ok(PipelineStage::Stage7SovereignDelivery)
             }
         }
+    }
+
+    /// Validates invariants and advances the capsule's current_stage, updating its timestamp
+    pub fn advance<P: AsRef<Path>>(capsule: &mut ProjectCapsule, workspace_root: P) -> Result<PipelineStage, StageTransitionError> {
+        let next_stage = Self::can_advance(capsule, workspace_root)?;
+        capsule.current_stage = next_stage;
+        capsule.updated_at = chrono::Utc::now();
+        Ok(next_stage)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_stage_1_requires_intent() {
+        let mut capsule = ProjectCapsule {
+            current_stage: PipelineStage::Stage1ProblemIntent,
+            ..Default::default()
+        };
+        capsule.job_1_intent.problem_statement = "".to_string();
+
+        let err = StageRunner::can_advance(&capsule, ".").unwrap_err();
+        assert!(matches!(err, StageTransitionError::MissingIntent));
+
+        capsule.job_1_intent.problem_statement = "Valid sovereign goal".to_string();
+        let next = StageRunner::advance(&mut capsule, ".").unwrap();
+        assert_eq!(next, PipelineStage::Stage2ArchitectureConstraints);
+        assert_eq!(capsule.current_stage, PipelineStage::Stage2ArchitectureConstraints);
     }
 }

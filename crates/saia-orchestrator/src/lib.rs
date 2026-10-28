@@ -1,7 +1,25 @@
 pub mod stage_machine;
 pub mod router;
 pub mod mediator;
+pub mod version_adapter;
+pub mod collision_tracker;
+pub mod context_fork;
+pub mod rpc_batcher;
+pub mod harness;
+pub mod teardown_guard;
+pub mod two_phase_commit;
+pub mod overnight;
+pub mod worktree;
 
 pub use stage_machine::{StageRunner, StageTransitionError};
 pub use router::{ModelRouter, ModelTier, TaskComplexity};
 pub use mediator::HumanVerificationMediator;
+pub use version_adapter::{VersionAdaptiveEngine, VersionUpdateReport};
+pub use collision_tracker::{ReadSetCollisionTracker, FileLease, CollisionEvent};
+pub use context_fork::{ContextSnapshot, ContextTurn, ForkedSubagentBranch, BranchStatus};
+pub use rpc_batcher::{RpcBatchDispatcher, ToolCallInvocation, ToolExecutionResult, RpcBatchSummary};
+pub use harness::MapaiHarness;
+pub use teardown_guard::{ProcessTeardownGuard, TeardownOutcome};
+pub use two_phase_commit::{TwoPhaseCommitTransaction, StagedFileMutation, TransactionState, SwarmCommitCoordinator};
+pub use overnight::{OvernightConfig, OvernightCoordinator, MorningHandoffReport, ResourceSnapshot};
+pub use worktree::{WorktreeManager, EphemeralWorktree};

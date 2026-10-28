@@ -25,6 +25,14 @@ Every engineering task is formally partitioned into two orthogonal requirement d
 - **Job 1 (Intent & Teleology):** The functional objective defined by the human collaborator.
 - **Job 2 (Material & Environmental Constraints):** Non-negotiable physical constraints (target architecture, memory budgets, zero-allocation requirements, API contracts).
 
+#### 2.1.1 Canonical Professional Jobs-to-be-Done (JTBD) Classification
+MAPai core strictly categorizes Job 1 Intent according to five foundational systems engineering transformation archetypes (aligned with IEEE 12207 and Enterprise SDLC standards):
+1. **Greenfield Synthesis (`greenfield-synthesis`):** 0-to-1 system architecture, specification formulation, and complete multi-modal implementation from baseline requirements.
+2. **Brownfield Modernization (`brownfield-modernization`):** Invariant-preserving refactoring, legacy framework migration, dependency modernization, and technical debt eradication.
+3. **Independent Verification & Assurance (`independent-verification`):** Deterministic AST truth auditing (`TruthScanner`), compiler-enforced invariant verification, security compliance, and WCAG contrast gates.
+4. **Heterogeneous Tool Orchestration (`heterogeneous-automation`):** Closed-loop external system integration, native OS GUI perception/action (`WinSta0\Default`), and desktop API automation (COM, headless browsers).
+5. **Cognitive Distillation & Knowledge Engineering (`cognitive-distillation`):** SOTA benchmark synthesis, deep unstructured document ingestion, live registry intelligence (`OmniScout`), and Architecture Decision Record (ADR) extraction under Cognitive Preimage Protection.
+
 ### 2.2 Continuity-Aware Workflow Orchestration (CAWO)
 Instead of retransmitting full conversation transcripts, MAPai maintains an append-only, content-addressed causal state ledger:
 - **State Capsule (`capsule.toml`):** Structured working memory ($< 1,000$ tokens) tracking active stage, invariants, and blocking frictions.
@@ -37,6 +45,18 @@ Adhering to IEEE 1012 standards, the generation authority (The Mason) is strictl
 
 ### 2.4 Anonymized Experience Distillation
 Rather than collecting user telemetry or private code, MAPai crystallizes algorithmic struggle patterns into discrete, content-addressed heuristic antibodies (`h_<hash>.json`), establishing an open-source commons of collective engineering wisdom.
+
+### 2.5 Intent Distillation Over Literal Echoing (Cognitive Preimage Protection)
+Human collaborators naturally communicate through personal reflections, idioms, philosophies, and real-life lessons. Under the SAiA protocol:
+- **Never Literally Echo:** MAPai does not blindly copy the human's personal reflections, quotes, creeds, or conversational stories into public deliverables, UI copy, or source code.
+- **Distill Key Invariants:** MAPai extracts the underlying engineering teleology, architectural standards, and physical constraints (Job 1 / Job 2) embodied in the human's lesson.
+- **Apply Human Intent Ubiquitously:** The distilled takeaways are applied systematically across all projects MAPai manages, keeping the human's private reflections protected within their sovereign domain.
+
+### 2.6 Global Screen Analyser & Closed-Loop Visual IV&V
+Blind execution of GUI automation commands (sending virtual keystrokes or mouse clicks) without visual feedback induces severe failure modes: invisible text due to palette/theme desynchronization, uncommitted floating input boxes, and window occlusion. Under the SAiA protocol:
+- **Zero-Blind Execution:** Every GUI and desktop operation is governed by a closed-loop perception-action cycle.
+- **Physical Screen Perception:** MAPai captures the user's interactive desktop (`WinSta0\Default`) at native sub-millisecond speed, computes WCAG 2.1 relative luminance and contrast ratios, and isolates content bounding boxes.
+- **Deterministic Visual Gate:** Deliverables are immediately rejected with actionable diagnostic remediation if content fails to physically manifest, if text is visually illegible (contrast ratio $< 3.0:1$), or if color requirements diverge from intent.
 
 ---
 

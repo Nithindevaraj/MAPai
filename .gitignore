@@ -1,6 +1,5 @@
 /target/
 /.mapai/
 /.secrets/
-Cargo.lock
 *.exe
 *.log

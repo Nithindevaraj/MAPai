@@ -5,6 +5,10 @@ edition.workspace = true
 authors.workspace = true
 license.workspace = true
 
+[[bin]]
+name = "mapai"
+path = "src/main.rs"
+
 [dependencies]
 saia-core = { path = "../saia-core" }
 saia-verify = { path = "../saia-verify" }

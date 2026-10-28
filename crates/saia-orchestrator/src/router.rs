@@ -32,3 +32,17 @@ impl ModelRouter {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_model_router_tier_selection() {
+        assert_eq!(ModelRouter::route(TaskComplexity::DeterministicCheck), ModelTier::NativeBinaryLocal);
+        match ModelRouter::route(TaskComplexity::LowReasoning) {
+            ModelTier::LocalSmallLanguageModel { model_tag, .. } => assert_eq!(model_tag, "qwen2.5-coder:7b"),
+            _ => panic!("Expected LocalSmallLanguageModel"),
+        }
+    }
+}

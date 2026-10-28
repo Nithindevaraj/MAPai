@@ -7,9 +7,11 @@ license.workspace = true
 
 [dependencies]
 saia-core = { path = "../saia-core" }
+toml.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 regex.workspace = true
 walkdir.workspace = true
+chrono.workspace = true
 thiserror.workspace = true
 anyhow.workspace = true

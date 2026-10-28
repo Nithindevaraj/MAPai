@@ -12,4 +12,6 @@ toml.workspace = true
 chrono.workspace = true
 thiserror.workspace = true
 anyhow.workspace = true
+rusqlite.workspace = true
 sha2.workspace = true
+walkdir.workspace = true

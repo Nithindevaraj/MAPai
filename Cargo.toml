@@ -8,7 +8,7 @@ members = [
 ]
 
 [workspace.package]
-version = "0.1.0"
+version = "1.0.27"
 edition = "2021"
 authors = ["MAPai & SAiA Protocol Contributors"]
 license = "MIT OR Apache-2.0"
@@ -34,3 +34,4 @@ regex = "1.10"
 chrono = { version = "0.4", features = ["serde"] }
 thiserror = "1.0"
 anyhow = "1.0"
+rusqlite = { version = "0.31", features = ["bundled"] }
