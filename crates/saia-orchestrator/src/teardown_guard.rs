@@ -82,11 +82,17 @@ mod tests {
     #[test]
     fn test_tier_1_graceful_eof_on_fast_process() {
         let guard = ProcessTeardownGuard::default();
-        // Start a short-lived process (cmd.exe /c echo test or cmd.exe /c exit 0)
-        let child = Command::new("cmd")
-            .args(["/c", "exit 0"])
-            .spawn()
-            .unwrap();
+        let child = if cfg!(windows) {
+            Command::new("cmd")
+                .args(["/c", "exit 0"])
+                .spawn()
+                .unwrap()
+        } else {
+            Command::new("sh")
+                .args(["-c", "exit 0"])
+                .spawn()
+                .unwrap()
+        };
 
         let outcome = guard.teardown(child).unwrap();
         match outcome {
@@ -103,11 +109,17 @@ mod tests {
     #[test]
     fn test_tier_3_force_kills_hanging_process() {
         let guard = ProcessTeardownGuard::new(Duration::from_millis(100));
-        // Start a long-running process (ping localhost or powershell sleep)
-        let child = Command::new("powershell")
-            .args(["-NoProfile", "-Command", "Start-Sleep -Seconds 30"])
-            .spawn()
-            .unwrap();
+        let child = if cfg!(windows) {
+            Command::new("powershell")
+                .args(["-NoProfile", "-Command", "Start-Sleep -Seconds 30"])
+                .spawn()
+                .unwrap()
+        } else {
+            Command::new("sh")
+                .args(["-c", "sleep 30"])
+                .spawn()
+                .unwrap()
+        };
 
         let outcome = guard.teardown(child).unwrap();
         match outcome {
