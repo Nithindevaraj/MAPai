@@ -1,4 +1,4 @@
-# MAPai (SAiA) ⚡
+# Make Anything Process with AI (MAPai)
 
 > **The Sovereign Harness for Autonomous AI Agents**  
 > *"Models generate code. MAPai harnesses the swarm."*  
@@ -16,11 +16,9 @@
 
 ## ⚡ What is MAPai?
 
-> **"Models generate code. MAPai harnesses the swarm."**
+Modern coding agents are powerful but unconstrained: they clobber files concurrently, leave hollow `// TODO` stubs, execute destructive shell commands, and grade their own work.
 
-Modern coding agents (Claude Code, DeepSeek Harness, JCODE, Hermes) are powerful but unconstrained: they clobber files concurrently, leave hollow `// TODO` stubs, execute destructive shell commands, and grade their own work.
-
-**MAPai is a native Rust governance harness that sits between autonomous agents and your machine:**
+**MAPai is a native Rust governance harness that sits as a layers between autonomous agents and you:**
 
 1. 🔒 **Transactional Agent Containment (Two-Phase Commit)**: Agents operate in isolated virtual overlays. Mutations are held in-memory and only flushed to disk if all acceptance tests and linters pass atomically.
 2. 🛡️ **Blast-Radius & Secret Shield**: Strict 4-tier risk classification blocks catastrophic filesystem operations (`~`, `/`, `.ssh`, `.env`) and automatically scrubs credentials before execution.
